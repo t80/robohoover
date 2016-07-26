@@ -23,5 +23,7 @@ Work omitted due to time constraints
     3. No logging has been added
     4. Its possible caching would be useful in production. Given the current spec, the responses
        should not change given the same input parameters.
+    5  There could be more checking for nulls and valid parameter validity should a defensive approach
+       be taken by the service layer
 
 

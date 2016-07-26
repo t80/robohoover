@@ -14,12 +14,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
 import static java.util.Arrays.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
 import static org.springframework.http.HttpStatus.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,9 +47,9 @@ public class RobohooverIT {
 
         ResponseEntity<RobohooverResponse> response = robohooverClient.requestRoomHoovering(
                 hooverRequest
-                        .withDirtPatch(1,1)
-                        .withRoomSize(2,2)
-                        .withStartingCoordinate(0,0)
+                        .withDirtPatch(1, 1)
+                        .withRoomSize(2, 2)
+                        .withStartingCoordinate(0, 0)
                         .withInstructions("NESW")
                         .build());
 
@@ -55,52 +57,63 @@ public class RobohooverIT {
         assertThat(response.getBody().getCoords(), is(expectedEndPosition));
     }
 
-    @Test
+    @Test(expected = HttpClientErrorException.class)
     public void returns400OnNullRoomSize() throws Exception {
-        ResponseEntity<RobohooverResponse> response = robohooverClient.requestRoomHoovering(
-                hooverRequest
-                        .withDirtPatch(1,1)
-                        .withStartingCoordinate(0,0)
-                        .withInstructions("NESW")
-                        .build());
-
-        assertThat(response.getStatusCode(), is(BAD_REQUEST));
+        try {
+            robohooverClient.requestRoomHoovering(
+                    hooverRequest.withDirtPatch(1, 1)
+                            .withStartingCoordinate(0, 0)
+                            .withInstructions("NESW")
+                            .build());
+        } catch (HttpClientErrorException e) {
+            assertThat(e.getStatusCode(), is(BAD_REQUEST));
+            throw e;
+        }
     }
 
-    @Test
+    @Test(expected = HttpClientErrorException.class)
     public void returns400OnNullCoords() throws Exception {
-        ResponseEntity<RobohooverResponse> response = robohooverClient.requestRoomHoovering(
-                hooverRequest
-                        .withRoomSize(2,2)
-                        .withDirtPatch(1,1)
-                        .withInstructions("NESW")
-                        .build());
-
-        assertThat(response.getStatusCode(), is(BAD_REQUEST));
+        try {
+            robohooverClient.requestRoomHoovering(
+                    hooverRequest
+                            .withRoomSize(2, 2)
+                            .withDirtPatch(1, 1)
+                            .withInstructions("NESW")
+                            .build());
+        } catch (HttpClientErrorException e) {
+            assertThat(e.getStatusCode(), is(BAD_REQUEST));
+            throw e;
+        }
     }
 
-    @Test
+    @Test(expected = HttpClientErrorException.class)
     public void returns400OnNullPatches() throws Exception {
-        ResponseEntity<RobohooverResponse> response = robohooverClient.requestRoomHoovering(
-                hooverRequest
-                        .withRoomSize(2,2)
-                        .withStartingCoordinate(0,0)
-                        .withInstructions("NESW")
-                        .build());
-
-        assertThat(response.getStatusCode(), is(BAD_REQUEST));
+        try {
+            robohooverClient.requestRoomHoovering(
+                    hooverRequest
+                            .withRoomSize(2, 2)
+                            .withStartingCoordinate(0, 0)
+                            .withInstructions("NESW")
+                            .build());
+        } catch (HttpClientErrorException e) {
+            assertThat(e.getStatusCode(), is(BAD_REQUEST));
+            throw e;
+        }
     }
 
-    @Test
+    @Test(expected = HttpClientErrorException.class)
     public void returns400OnInvalidDirections() throws Exception {
-        ResponseEntity<RobohooverResponse> response = robohooverClient.requestRoomHoovering(
-                hooverRequest
-                        .withDirtPatch(1,1)
-                        .withRoomSize(2,2)
-                        .withStartingCoordinate(0,0)
-                        .withInstructions("NESWX")
-                        .build());
-
-        assertThat(response.getStatusCode(), is(BAD_REQUEST));
+        try {
+            robohooverClient.requestRoomHoovering(
+                    hooverRequest
+                            .withDirtPatch(1, 1)
+                            .withRoomSize(2, 2)
+                            .withStartingCoordinate(0, 0)
+                            .withInstructions("NESWX")
+                            .build());
+        } catch (HttpClientErrorException e) {
+            assertThat(e.getStatusCode(), is(BAD_REQUEST));
+            throw e;
+        }
     }
 }
