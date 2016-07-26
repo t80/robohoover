@@ -8,7 +8,6 @@ import javax.persistence.Id;
 
 @Entity(name = "hoover_response")
 public class RobohooverServiceResponse {
-
     @Id
     @GeneratedValue
     private Long id;

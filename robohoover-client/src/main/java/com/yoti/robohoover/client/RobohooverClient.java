@@ -15,15 +15,16 @@ import java.net.URL;
 import static org.springframework.http.MediaType.*;
 
 public class RobohooverClient {
+    public static final String ROBOHOOVER_CLEAN_PATH = "/robohoover/clean";
+
     private final ObjectMapper mapper = new ObjectMapper();
     private final URL url;
     private final RestTemplate restTemplate;
 
     public RobohooverClient(String host, int port) throws MalformedURLException {
-        url = new URL("http://"+host+":"+ port+"/robohoover/clean");
+        url = new URL("http://"+host+":"+port+ROBOHOOVER_CLEAN_PATH);
         restTemplate = new RestTemplate();
     }
-
 
     public ResponseEntity<RobohooverResponse> requestRoomHoovering(RobohooverRequest hooverRequest) throws IOException {
         HttpEntity<String> entity = buildEntityFor(hooverRequest);

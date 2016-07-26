@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.*;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -36,7 +37,7 @@ public class HooverServiceAdapter {
     }
 
     public RobohooverResponse adapt(RobohooverServiceResponse serviceResponse) {
-        List<Integer> endPosition = Arrays.asList(serviceResponse.getCoordinate().getX(), serviceResponse.getCoordinate().getY());
+        List<Integer> endPosition = asList(serviceResponse.getCoordinate().getX(), serviceResponse.getCoordinate().getY());
         return new RobohooverResponse(endPosition, serviceResponse.cleanedPatchesCount());
     }
 

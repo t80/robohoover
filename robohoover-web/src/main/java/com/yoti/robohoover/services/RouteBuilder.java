@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public class RouteBuilder {
-
     public static final int GRID_JUMP = 1;
 
     public Route routeFrom(Coordinate startingCoordinate, RoomSize roomSize, List<Direction> instructions) {

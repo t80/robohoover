@@ -8,7 +8,6 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class RobohooverResponse {
-
     private final List<Integer> coords;
     private final Integer patches;
 

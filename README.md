@@ -25,5 +25,7 @@ Work omitted due to time constraints
        should not change given the same input parameters.
     5  There could be more checking for nulls and valid parameter validity should a defensive approach
        be taken by the service layer
+    6. There are omission regarding edge cases of parameter. only small room sizes and and instructions sets
+       are used but the logic should scale.
 
 

@@ -15,7 +15,6 @@ import java.util.Set;
 
 @Service
 public class HooverService {
-
     private final RouteBuilder routeBuilder;
     private final RobohooverRequestRepository requestRepository;
     private final RobohooverResponseRepository responseRepository;

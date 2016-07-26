@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Route {
-
     private final ArrayDeque<Coordinate> route;
 
     public Route(Coordinate startingCoordinate) {
@@ -29,11 +28,10 @@ public class Route {
 
     // Finds the intersection of the route and the dirty patches
     public Set<Coordinate> applyTo(List<Coordinate> dirtyPatches) {
-        Set<Coordinate> dirtPatches = new HashSet<>(dirtyPatches);
-        Set<Coordinate> cleanedPatches = new HashSet<>(dirtPatches);
-        cleanedPatches.retainAll(route);
+        Set<Coordinate> toBeCleanedPatches = new HashSet<>(dirtyPatches);
+        toBeCleanedPatches.retainAll(route);
 
-        return cleanedPatches;
+        return toBeCleanedPatches;
     }
 
     private Coordinate copyOf(Coordinate coordinate) {
