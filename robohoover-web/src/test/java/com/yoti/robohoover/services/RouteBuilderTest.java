@@ -1,8 +1,7 @@
 package com.yoti.robohoover.services;
 
-import com.yoti.robohoover.client.Coordinate;
-import com.yoti.robohoover.client.RoomSize;
-import com.yoti.robohoover.domain.Direction;
+import com.yoti.robohoover.domain.Coordinate;
+import com.yoti.robohoover.domain.RoomSize;
 import com.yoti.robohoover.domain.Route;
 import org.junit.Test;
 
@@ -18,22 +17,22 @@ public class RouteBuilderTest {
 
     private final RouteBuilder routeBuilder = new RouteBuilder();
     private final RoomSize roomSize = new RoomSize(2, 2);
-    private final Coordinate startingCoordinate = new Coordinate(0, 0);
+    private final Coordinate startingCoordinate = Coordinate.of(0, 0);
 
     @Test
     public void buildsCorrectRouteWhereHooverDoesntHitRoomWalls() {
         Route route = routeBuilder.routeFrom(
-                new Coordinate(0, 0),
+                Coordinate.of(0, 0),
                 roomSize,
                 asList(NORTH, EAST, SOUTH, WEST));
 
         List<Coordinate> coordinates = route.getCoordinates().stream().collect(toList());
 
-        assertThat(coordinates.get(0), is(new Coordinate(0,0)));
-        assertThat(coordinates.get(1), is(new Coordinate(0,1)));
-        assertThat(coordinates.get(2), is(new Coordinate(1,1)));
-        assertThat(coordinates.get(3), is(new Coordinate(1,0)));
-        assertThat(coordinates.get(4), is(new Coordinate(0,0)));
+        assertThat(coordinates.get(0), is(Coordinate.of(0,0)));
+        assertThat(coordinates.get(1), is(Coordinate.of(0,1)));
+        assertThat(coordinates.get(2), is(Coordinate.of(1,1)));
+        assertThat(coordinates.get(3), is(Coordinate.of(1,0)));
+        assertThat(coordinates.get(4), is(Coordinate.of(0,0)));
         assertThat(coordinates.size(), is(5));
     }
 
@@ -46,9 +45,9 @@ public class RouteBuilderTest {
 
         List<Coordinate> coordinates = route.getCoordinates().stream().collect(toList());
 
-        assertThat(coordinates.get(0), is(new Coordinate(0,0)));
-        assertThat(coordinates.get(1), is(new Coordinate(0,1)));
-        assertThat(coordinates.get(2), is(new Coordinate(1,1)));
+        assertThat(coordinates.get(0), is(Coordinate.of(0,0)));
+        assertThat(coordinates.get(1), is(Coordinate.of(0,1)));
+        assertThat(coordinates.get(2), is(Coordinate.of(1,1)));
         assertThat(coordinates.size(), is(3));
     }
 
@@ -61,9 +60,9 @@ public class RouteBuilderTest {
 
         List<Coordinate> coordinates = route.getCoordinates().stream().collect(toList());
 
-        assertThat(coordinates.get(0), is(new Coordinate(0,0)));
-        assertThat(coordinates.get(1), is(new Coordinate(1,0)));
-        assertThat(coordinates.get(2), is(new Coordinate(1,1)));
+        assertThat(coordinates.get(0), is(Coordinate.of(0,0)));
+        assertThat(coordinates.get(1), is(Coordinate.of(1,0)));
+        assertThat(coordinates.get(2), is(Coordinate.of(1,1)));
         assertThat(coordinates.size(), is(3));
     }
 
@@ -76,8 +75,8 @@ public class RouteBuilderTest {
 
         List<Coordinate> coordinates = route.getCoordinates().stream().collect(toList());
 
-        assertThat(coordinates.get(0), is(new Coordinate(0,0)));
-        assertThat(coordinates.get(1), is(new Coordinate(1,0)));
+        assertThat(coordinates.get(0), is(Coordinate.of(0,0)));
+        assertThat(coordinates.get(1), is(Coordinate.of(1,0)));
         assertThat(coordinates.size(), is(2));
     }
 
@@ -90,9 +89,9 @@ public class RouteBuilderTest {
 
         List<Coordinate> coordinates = route.getCoordinates().stream().collect(toList());
 
-        assertThat(coordinates.get(0), is(new Coordinate(0,0)));
-        assertThat(coordinates.get(1), is(new Coordinate(1,0)));
-        assertThat(coordinates.get(2), is(new Coordinate(0,0)));
+        assertThat(coordinates.get(0), is(Coordinate.of(0,0)));
+        assertThat(coordinates.get(1), is(Coordinate.of(1,0)));
+        assertThat(coordinates.get(2), is(Coordinate.of(0,0)));
         assertThat(coordinates.size(), is(3));
     }
 }

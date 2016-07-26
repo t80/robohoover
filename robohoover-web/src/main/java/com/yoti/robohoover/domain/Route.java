@@ -1,11 +1,12 @@
 package com.yoti.robohoover.domain;
 
-import com.yoti.robohoover.client.Coordinate;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-public final class Route {
+public class Route {
 
     private final ArrayDeque<Coordinate> route;
 
@@ -26,14 +27,18 @@ public final class Route {
         route.add(copyOf(coordinate));
     }
 
-    private Coordinate copyOf(Coordinate coordinate) {
-        return new Coordinate(coordinate.getX(), coordinate.getY());
+    // Finds the intersection of the route and the dirty patches
+    public Set<Coordinate> applyTo(List<Coordinate> dirtyPatches) {
+        Set<Coordinate> dirtPatches = new HashSet<>(dirtyPatches);
+        Set<Coordinate> cleanedPatches = new HashSet<>(dirtPatches);
+        cleanedPatches.retainAll(route);
+
+        return cleanedPatches;
     }
 
-    public static void main(String[] args) {
-        Coordinate exposed = new Coordinate(1, 2);
-        Route route = new Route(exposed);
-        Coordinate coordinate = route.getCoordinates().peekFirst();
-        System.out.println();
+    private Coordinate copyOf(Coordinate coordinate) {
+        return Coordinate.of(coordinate.getX(), coordinate.getY());
     }
+
+
 }

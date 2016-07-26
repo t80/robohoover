@@ -1,21 +1,20 @@
 package com.yoti.robohoover.testsupport;
 
-import com.yoti.robohoover.client.RoomHooverRequest;
-import com.yoti.robohoover.client.RoomHooverRequestBuilder;
+import com.yoti.robohoover.client.RobohooverRequest;
+import com.yoti.robohoover.client.RobohooverRequestBuilder;
 
 public class TestFixtures {
 
-    public static RoomHooverRequest validHooveringRequest() {
-        return new RoomHooverRequestBuilder()
+    public static RobohooverRequest validServiceRequest() {
+        return new RobohooverRequestBuilder()
                 .withDefaults()
                 .build();
     }
 
-    public static RoomHooverRequest hooveringRequestWithInvalidDirections() {
-        return new RoomHooverRequestBuilder()
+    public static RobohooverRequest robohooverRequestWithInvalidInstructions() {
+        return new RobohooverRequestBuilder()
                 .withDefaults()
                 .withInstructions("EWSNX")
                 .build();
     }
-
 }

@@ -1,8 +1,8 @@
 package com.yoti.robohoover.services;
 
-import com.yoti.robohoover.client.Coordinate;
-import com.yoti.robohoover.client.RoomSize;
+import com.yoti.robohoover.domain.Coordinate;
 import com.yoti.robohoover.domain.Direction;
+import com.yoti.robohoover.domain.RoomSize;
 import com.yoti.robohoover.domain.Route;
 import org.springframework.stereotype.Service;
 
@@ -25,25 +25,25 @@ public class RouteBuilder {
             case NORTH:
                 int nextNortherlyCoord = route.lastCoordinate().getY() + GRID_JUMP;
                 if(nextNortherlyCoord < roomSize.getHeight()) {
-                    route.add(new Coordinate(route.lastCoordinate().getX(), nextNortherlyCoord));
+                    route.add(Coordinate.of(route.lastCoordinate().getX(), nextNortherlyCoord));
                 }
                 break;
             case EAST:
                 int nextEasterlyCoord = route.lastCoordinate().getX() + GRID_JUMP;
                 if(nextEasterlyCoord < roomSize.getWidth()) {
-                    route.add(new Coordinate(nextEasterlyCoord, route.lastCoordinate().getY()));
+                    route.add(Coordinate.of(nextEasterlyCoord, route.lastCoordinate().getY()));
                 }
                 break;
             case SOUTH:
                 int nextSoutherlyCoord = route.lastCoordinate().getY() - GRID_JUMP;
                 if(nextSoutherlyCoord >= 0) {
-                    route.add(new Coordinate(route.lastCoordinate().getX(), nextSoutherlyCoord));
+                    route.add(Coordinate.of(route.lastCoordinate().getX(), nextSoutherlyCoord));
                 }
                 break;
             case WEST:
                 int nextWesterlyCoord = route.lastCoordinate().getX() - GRID_JUMP;
                 if(nextWesterlyCoord >=0) {
-                    route.add(new Coordinate(nextWesterlyCoord, route.lastCoordinate().getY()));
+                    route.add(Coordinate.of(nextWesterlyCoord, route.lastCoordinate().getY()));
                 }
                 break;
             default: throw new IllegalArgumentException("Unknown direction");

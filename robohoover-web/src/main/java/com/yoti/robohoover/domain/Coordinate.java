@@ -1,17 +1,23 @@
-package com.yoti.robohoover.client;
+package com.yoti.robohoover.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public final class Coordinate {
 
     public static Coordinate of(int x, int y) {
         return new Coordinate(x, y);
     }
 
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
 
-    public Coordinate(int x, int y) {
+    public Coordinate() {
+    }
+
+    private Coordinate(int x, int y) {
         this.x = x;
         this.y = y;
     }
