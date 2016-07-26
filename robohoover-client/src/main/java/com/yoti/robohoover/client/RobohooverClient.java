@@ -2,11 +2,11 @@ package com.yoti.robohoover.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -17,11 +17,11 @@ import static org.springframework.http.MediaType.*;
 public class RobohooverClient {
     private final ObjectMapper mapper = new ObjectMapper();
     private final URL url;
-    private final TestRestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     public RobohooverClient(String host, int port) throws MalformedURLException {
         url = new URL("http://"+host+":"+ port+"/robohoover/clean");
-        restTemplate = new TestRestTemplate();
+        restTemplate = new RestTemplate();
     }
 
 

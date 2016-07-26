@@ -20,6 +20,7 @@ import java.util.List;
 import static java.util.Arrays.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.springframework.http.HttpStatus.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -63,7 +64,7 @@ public class RobohooverIT {
                         .withInstructions("NESW")
                         .build());
 
-        assertThat(response.getStatusCode(), is(HttpStatus.BAD_REQUEST));
+        assertThat(response.getStatusCode(), is(BAD_REQUEST));
     }
 
     @Test
@@ -75,7 +76,7 @@ public class RobohooverIT {
                         .withInstructions("NESW")
                         .build());
 
-        assertThat(response.getStatusCode(), is(HttpStatus.BAD_REQUEST));
+        assertThat(response.getStatusCode(), is(BAD_REQUEST));
     }
 
     @Test
@@ -87,7 +88,7 @@ public class RobohooverIT {
                         .withInstructions("NESW")
                         .build());
 
-        assertThat(response.getStatusCode(), is(HttpStatus.BAD_REQUEST));
+        assertThat(response.getStatusCode(), is(BAD_REQUEST));
     }
 
     @Test
@@ -100,6 +101,6 @@ public class RobohooverIT {
                         .withInstructions("NESWX")
                         .build());
 
-        assertThat(response.getStatusCode(), is(HttpStatus.BAD_REQUEST));
+        assertThat(response.getStatusCode(), is(BAD_REQUEST));
     }
 }
