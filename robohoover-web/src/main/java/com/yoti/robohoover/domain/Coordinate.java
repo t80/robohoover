@@ -6,7 +6,6 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public final class Coordinate {
-
     public static Coordinate of(int x, int y) {
         return new Coordinate(x, y);
     }
